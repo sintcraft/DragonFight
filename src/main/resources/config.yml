@@ -1,0 +1,14 @@
+cancelPortalEvent: true
+attacks:
+  impact:
+    delay: 5
+    impulse: 5
+    probability: 0.2
+    effects:
+      - FAST_MINING:1:2
+  acid-rain:
+    duration: 10
+    damage: 2
+    probability: 0.2
+    effects:
+      - NIGHT_VISION:1:1

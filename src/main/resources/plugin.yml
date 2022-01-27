@@ -1,0 +1,11 @@
+name: DragonFight
+main: xyz.sintcraft.DragonFight.DragonFight
+version: 0.1.0
+authors: [sintcraft]
+description: "Plugin for update the ender dragon fight \n Spigot: https://"
+depend: [PlaceholderAPI]
+
+commands:
+  dragonfight:
+    permission: dragonfight.command.dragonfight
+    description: use admin commads
