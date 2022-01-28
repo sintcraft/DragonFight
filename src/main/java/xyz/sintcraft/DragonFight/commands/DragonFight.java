@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +56,11 @@ public class DragonFight implements CommandExecutor, TabExecutor {
                                     + " &6>> &aEnable"
                     ));
                     plugin.getConfig().set("cancelPortalEvent", false);
+                    try {
+                        plugin.getConfig().save(new File(plugin.getDataFolder(), "config.yml"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 } else if(args[1].equalsIgnoreCase("disable")) {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&',
                             "&0&l[&6&lDF&0&l] "
@@ -62,6 +69,11 @@ public class DragonFight implements CommandExecutor, TabExecutor {
                                     + " &6>> &cDisable"
                     ));
                     plugin.getConfig().set("cancelPortalEvent", true);
+                    try {
+                        plugin.getConfig().save(new File(plugin.getDataFolder(), "config.yml"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         } else if(args.length >= 1 && args[0].equalsIgnoreCase("reload")) {
