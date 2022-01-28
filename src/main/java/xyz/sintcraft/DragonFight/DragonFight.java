@@ -3,19 +3,18 @@ package xyz.sintcraft.DragonFight;
 import com.sun.security.auth.login.ConfigFile;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 public class DragonFight extends JavaPlugin {
     private boolean enablePlaceHolders = false;
-    private boolean cancelPortalEvent;
     private DFPlaceHolderExpansion placeholderexpansion;
     private EventsManager eventsManager;
     private CommandsManager commandsManager;
+    private FileConfiguration config;
+    private UtilFunctions utilFunctions;
 
     @Override
     public void onEnable() {
-        placeholderexpansion = new DFPlaceHolderExpansion(this);
-        setEnablePlaceHolders();
-        saveDefaultConfig();
         setupVariables();
     }
 
@@ -25,8 +24,13 @@ public class DragonFight extends JavaPlugin {
     }
 
     private void setupVariables() {
-        cancelPortalEvent = getConfig().getBoolean("cancelPortalEvent");
-        getLogger().info("Cancel Event set "+cancelPortalEvent);
+
+        utilFunctions = new UtilFunctions(this);
+        utilFunctions.reloadConfig();
+        getLogger().info("Register util fuctions success.");
+
+        placeholderexpansion = new DFPlaceHolderExpansion(this);
+        setEnablePlaceHolders();
 
         eventsManager = new EventsManager(this);
         getLogger().info("Register events success.");
@@ -45,17 +49,32 @@ public class DragonFight extends JavaPlugin {
         }
     }
 
+    @Override
+    public FileConfiguration getConfig() {
+        return this.config;
+    }
+
     public boolean isEnablePlaceHolders() {
         return enablePlaceHolders;
     }
 
-    public boolean isCancelPortalEvent() {
-        return cancelPortalEvent;
+    public void setConfig(FileConfiguration config) {
+        this.config = config;
     }
 
-    public void setCancelPortalEvent(boolean cancelPortalEvent) {
-        this.cancelPortalEvent = cancelPortalEvent;
-        getConfig().set("cancelPortalEvent", cancelPortalEvent);
-        saveConfig();
+    public CommandsManager getCommandsManager() {
+        return commandsManager;
+    }
+
+    public DFPlaceHolderExpansion getPlaceholderexpansion() {
+        return placeholderexpansion;
+    }
+
+    public EventsManager getEventsManager() {
+        return eventsManager;
+    }
+
+    public UtilFunctions getUtilFunctions() {
+        return utilFunctions;
     }
 }
