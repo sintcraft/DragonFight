@@ -1,0 +1,10 @@
+prefix: '&0&l[&6&lD&f&lF&0&l] '
+commands:
+  dragonfight-reload-success: '&aPlugin reloaded!'
+  dragonfight-endstatus:
+    status-msg: '&fEnd status is %now%'
+    enable: '&cEnable'
+    enable-msg: '&fend is now enabled, %before% &6>> %now%'
+    disable: '&cDisable'
+    disable-msg: '&fend is now enabled, %before% &6>> %now%'
+    error-msg: '&csyntax error, &eUse: /dragonfight statusEnd enable/disable'

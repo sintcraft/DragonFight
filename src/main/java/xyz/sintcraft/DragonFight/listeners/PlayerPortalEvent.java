@@ -21,7 +21,7 @@ public class PlayerPortalEvent implements Listener {
             if(cooldown.getTime() <= (new Date()).getTime()) {
                 cooldown = new Date();
                 cooldown.setTime(cooldown.getTime()+5000);
-                e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&0&l[&6&lDF&0&l] "+"&cDon't access"));
+                e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getLenguage().getString("prefix")+"&cDon't access"));
             }
             e.setCancelled(true);
         }

@@ -11,6 +11,7 @@ public class DragonFight extends JavaPlugin {
     private EventsManager eventsManager;
     private CommandsManager commandsManager;
     private FileConfiguration config;
+    private FileConfiguration lenguage;
     private UtilFunctions utilFunctions;
 
     @Override
@@ -54,12 +55,20 @@ public class DragonFight extends JavaPlugin {
         return this.config;
     }
 
+    public FileConfiguration getLenguage() {
+        return this.lenguage;
+    }
+
     public boolean isEnablePlaceHolders() {
         return enablePlaceHolders;
     }
 
     public void setConfig(FileConfiguration config) {
         this.config = config;
+    }
+
+    public void setLenguage(FileConfiguration lenguage) {
+        this.lenguage = lenguage;
     }
 
     public CommandsManager getCommandsManager() {
