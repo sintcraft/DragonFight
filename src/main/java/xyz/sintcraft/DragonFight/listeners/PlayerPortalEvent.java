@@ -17,7 +17,7 @@ public class PlayerPortalEvent implements Listener {
     @EventHandler
     public void onPlayerPortalEvent(org.bukkit.event.player.PlayerPortalEvent e) {
         if(!e.getTo().getWorld().getName().endsWith("the_end"))return;
-        if(plugin.isCancelPortalEvent() && !e.getPlayer().hasPermission("dragonfight.portal.bypass")) {
+        if(plugin.getConfig().getBoolean("cancelPortalEvent") && !e.getPlayer().hasPermission("dragonfight.portal.bypass")) {
             if(cooldown.getTime() <= (new Date()).getTime()) {
                 cooldown = new Date();
                 cooldown.setTime(cooldown.getTime()+5000);
