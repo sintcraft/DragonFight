@@ -29,4 +29,19 @@ public class UtilFunctions {
         }
     }
 
+    public void reloadLenguage() {
+        File file = new File(dragonFight.getDataFolder(), "lenguage.yml");
+        if(!file.exists()) {
+            dragonFight.getDataFolder().mkdirs();
+            dragonFight.saveResource("lenguage.yml", false);
+        }
+        YamlConfiguration config = new YamlConfiguration();
+        try {
+            config.load(file);
+            dragonFight.setLenguage(config);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -36,24 +36,28 @@ public class DragonFight implements CommandExecutor, TabExecutor {
         if((args.length == 1 || args.length == 2) && args[0].equalsIgnoreCase("statusEnd")) {
             if (args.length == 1) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                        "&0&l[&6&lDF&0&l] "
-                                +"&fEnd status is "
-                                + (plugin.getConfig().getBoolean("cancelPortalEvent") ? "&cDisable" : "&aEnable")
+                        plugin.getLenguage().getString("prefix")
+                                + plugin.getLenguage().getString("commands.dragonfight-endstatus.status-msg")
+                                .replace("%now%", plugin.getConfig().getBoolean("cancelPortalEvent")
+                                        ? plugin.getLenguage().getString("commands.dragonfight-endstatus.disable")
+                                        : plugin.getLenguage().getString("commands.dragonfight-endstatus.enable"))
                         ));
             }
             if(args.length == 2) {
                 if(!args[1].equalsIgnoreCase("enable") && !args[1].equalsIgnoreCase("disable")){
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                            "&0&l[&6&lDF&0&l] "
-                            + "&csyntax error, &eUse: /dragonfight statusEnd enable/disable"
+                            plugin.getLenguage().getString("prefix")
+                            + plugin.getLenguage().getString("commands.dragonfight-endstatus.error-msg")
                     ));
                     return false;
                 } else if(args[1].equalsIgnoreCase("enable")) {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                            "&0&l[&6&lDF&0&l] "
-                                    + "&fend is now enabled, "
-                                    + (plugin.getConfig().getBoolean("cancelPortalEvent") ? "&cDisable" : "&aEnable")
-                                    + " &6>> &aEnable"
+                            plugin.getLenguage().getString("prefix")
+                                    + plugin.getLenguage().getString("commands.dragonfight-endstatus.enable-msg")
+                                    .replace("%before%", plugin.getConfig().getBoolean("cancelPortalEvent")
+                                    ? plugin.getLenguage().getString("commands.dragonfight-endstatus.disable")
+                                    : plugin.getLenguage().getString("commands.dragonfight-endstatus.enable"))
+                                    .replace("%now%", plugin.getLenguage().getString("commands.dragonfight-endstatus.enable"))
                     ));
                     plugin.getConfig().set("cancelPortalEvent", false);
                     try {
@@ -63,10 +67,12 @@ public class DragonFight implements CommandExecutor, TabExecutor {
                     }
                 } else if(args[1].equalsIgnoreCase("disable")) {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                            "&0&l[&6&lDF&0&l] "
-                                    + "&fend is now disable, "
-                                    + (plugin.getConfig().getBoolean("cancelPortalEvent") ? "&cDisable" : "&aEnable")
-                                    + " &6>> &cDisable"
+                            plugin.getLenguage().getString("prefix")
+                                    + plugin.getLenguage().getString("commands.dragonfight-endstatus.enable-msg")
+                                    .replace("%before%", plugin.getConfig().getBoolean("cancelPortalEvent")
+                                            ? plugin.getLenguage().getString("commands.dragonfight-endstatus.disable")
+                                            : plugin.getLenguage().getString("commands.dragonfight-endstatus.enable"))
+                                    .replace("%now%", plugin.getLenguage().getString("commands.dragonfight-endstatus.disable"))
                     ));
                     plugin.getConfig().set("cancelPortalEvent", true);
                     try {
@@ -79,8 +85,8 @@ public class DragonFight implements CommandExecutor, TabExecutor {
         } else if(args.length >= 1 && args[0].equalsIgnoreCase("reload")) {
             plugin.getUtilFunctions().reloadConfig();
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&0&l[&6&lDF&0&l] "
-                            + "&aPlugin reloaded!"
+                    plugin.getLenguage().getString("prefix")
+                            + plugin.getLenguage().getString("command.dragonfight-reload-success")
             ));
         }
         return false;
